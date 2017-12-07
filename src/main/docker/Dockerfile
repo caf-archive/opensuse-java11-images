@@ -16,7 +16,7 @@
 
 FROM cafinternal/prereleases:opensuse-tini-1.0.1-SNAPSHOT
 
-# Update the OS packages and install Java and cURL
+# Update the OS packages and install Java
 RUN zypper -n refresh && \
     zypper -n update && \
     zypper -n install java-1_9_0-openjdk

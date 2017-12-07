@@ -27,7 +27,7 @@
     <packaging>pom</packaging>
 
     <name>openSUSE JRE9 image</name>
-    <description>An openSUSE-based image which includes the OpenJDK 8 Runtime Environment.</description>
+    <description>An openSUSE-based image which includes the OpenJDK 9 Runtime Environment.</description>
     <url>https://github.com/CAFapi/opensuse-jre9-image</url>
 
     <parent>
