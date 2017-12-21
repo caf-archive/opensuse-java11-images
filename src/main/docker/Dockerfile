@@ -14,52 +14,26 @@
 # limitations under the License.
 #
 
-#
-# Preliminary image that install java9 prerequisites
-#
-FROM cafapi/opensuse-tini:1.0 AS builder
-
-RUN export JAVA_HOME=/usr/lib64/jvm/jre-1.8.0-openjdk && \
-    export PATH=$JAVA_HOME/bin:$PATH && \
-    export OBF_JAVA8_HOME=/usr/lib64/jvm/jre-1.8.0-openjdk
-
-# Update the OS packages and install prerequsites
-RUN zypper -n refresh && \
-    zypper -n update && \
-    zypper -n install git-core mercurial zip bzip2 unzip tar && \
-    zypper -n install ccache make gcc gcc-c++ ca-certificates-cacert ca-certificates-mozilla && \
-    zypper -n install libstdc++-devel alsa-devel cups-devel xorg-x11-devel libjpeg62-devel giflib-devel && \
-    zypper -n install rpm-build gpg && \
-    zypper -n install java-1_8_0-openjdk-devel
-
-# Prepare environemt for openjdk9 build
-RUN mkdir ~/openjdkathome && \
-    cd ~/openjdkathome && \
-    git clone https://github.com/hgomez/obuildfactory.git
-
-# Build openjdk9 rpm package
-RUN cd ~/openjdkathome && \
-    XPACKAGE=true XCLEAN=true XUSE_NEW_BUILD_SYSTEM=true XBUILD=true ./obuildfactory/openjdk9/linux/standalone-job.sh
-
-#
-# The actual image definition
-#
 FROM cafapi/opensuse-tini:1.0
 
 # Update the OS packages
 RUN zypper -n refresh && \
-    zypper -n update
+    zypper -n update && \
+    zypper -n install wget fontconfig libX11.so.6 libXext.so.6 libXi.so.6 libXrender.so.1 libXtst.so.6 libasound.so.2 libgif.so.6 \
+        libjpeg.so.8 libjvm.so libpng16.so.16 libpulse.so.0 mozilla-nss jpackage-utils liblcms2.so.2
 
 # Install Java certificate installation script
 ADD https://raw.githubusercontent.com/CAFapi/caf-common/v1.14.0/container-cert-script/install-ca-cert-java.sh \
     /startup/startup.d/
 RUN chmod +x /startup/startup.d/install-ca-cert-java.sh
 
-# Install openjdk9
-COPY --from=builder OBF_DROP_DIR/openjdk9/ /usr/lib64/jvm/jre-1.9.0-openjdk/
+RUN wget https://download.opensuse.org/repositories/Java:/Factory/openSUSE_Leap_42.3/x86_64/java-9-openjdk-headless-9.0.1.0-102.1.x86_64.rpm
+RUN rpm -ivh --nodeps java-9-openjdk-headless-9.0.1.0-102.1.x86_64.rpm
 
-ADD /usr/lib64/jvm/jre-1.9.0-openjdk/openjdk9_1.9.0-b94_amd64.rpm /openjdk9_1.9.0-b94_amd64.rpm
-RUN rpm -i openjdk9_1.9.0-b94_amd64.rpm
+RUN wget https://download.opensuse.org/repositories/Java:/Factory/openSUSE_Leap_42.3/x86_64/java-9-openjdk-9.0.1.0-102.1.x86_64.rpm
+RUN rpm -ivh --nodeps java-9-openjdk-9.0.1.0-102.1.x86_64.rpm
+
+RUN rm java-9-openjdk-headless-9.0.1.0-102.1.x86_64.rpm java-9-openjdk-9.0.1.0-102.1.x86_64.rpm
 
 # Tag the image
 ARG BUILD_NUMBER
