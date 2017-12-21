@@ -11,4 +11,4 @@ Any executable scripts added to the `/startup/startup.d/` directory will be auto
 ### Certificate Installation
 The image comes pre-installed with several startup scripts which provide a mechanism to extend the CA certificates which should be trusted.
 
-**NOTE - this is currently utilising an unstable java-9-openjdk package, therefore this base image is currently only intended to used for testing purposed and is not to be used for production.**
+**NOTE - this is currently utilising an unstable java-9-openjdk package, therefore this base image is currently only intended to used for testing purposes and is not to be used for production.**
