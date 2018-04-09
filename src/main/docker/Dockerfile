@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-FROM cafapi/opensuse-tini:1.0
+FROM cafapi/opensuse-base:1
 
 # Update the OS packages
 RUN zypper -n refresh && \
