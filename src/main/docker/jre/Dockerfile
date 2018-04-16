@@ -27,13 +27,13 @@ ADD https://raw.githubusercontent.com/CAFapi/caf-common/v1.14.0/container-cert-s
     /startup/startup.d/
 RUN chmod +x /startup/startup.d/install-ca-cert-java.sh
 
-RUN wget https://download.opensuse.org/repositories/Java:/Factory/openSUSE_Leap_42.3/x86_64/java-9-openjdk-headless-9.0.4.0-125.1.x86_64.rpm
-RUN rpm -ivh --nodeps java-9-openjdk-headless-9.0.4.0-125.1.x86_64.rpm
+RUN wget https://download.opensuse.org/repositories/Java:/Factory/openSUSE_Leap_42.3/x86_64/java-11-openjdk-headless-11.0.0.0~9-27.1.x86_64.rpm
+RUN rpm -ivh --nodeps java-11-openjdk-headless-11.0.0.0~9-27.1.x86_64.rpm
 
-RUN wget https://download.opensuse.org/repositories/Java:/Factory/openSUSE_Leap_42.3/x86_64/java-9-openjdk-9.0.4.0-125.1.x86_64.rpm
-RUN rpm -ivh --nodeps java-9-openjdk-9.0.4.0-125.1.x86_64.rpm
+RUN wget https://download.opensuse.org/repositories/Java:/Factory/openSUSE_Leap_42.3/x86_64/java-11-openjdk-11.0.0.0~9-27.1.x86_64.rpm
+RUN rpm -ivh --nodeps java-11-openjdk-11.0.0.0~9-27.1.x86_64.rpm
 
-RUN rm java-9-openjdk-headless-9.0.4.0-125.1.x86_64.rpm java-9-openjdk-9.0.4.0-125.1.x86_64.rpm
+RUN rm java-11-openjdk-headless-11.0.0.0~9-27.1.x86_64.rpm java-11-openjdk-11.0.0.0~9-27.1.x86_64.rpm
 
 # Tag the image
 ARG BUILD_NUMBER
