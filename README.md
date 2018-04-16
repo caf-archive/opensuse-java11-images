@@ -1,6 +1,6 @@
-# openSUSE and Java 9 Runtime image
+# openSUSE and Java 11 Runtime image
 
-This project builds an openSUSE-based image which includes the OpenJDK 9 Runtime Environment and is based off the [OpenSUSE Base Image](https://github.com/CAFapi/opensuse-base-image). It can be used as a base image by projects which require Java 9.
+This project builds an openSUSE-based image which includes the OpenJDK 11 Runtime Environment and is based off the [OpenSUSE Base Image](https://github.com/CAFapi/opensuse-base-image). It can be used as a base image by projects which require Java 11.
 
 ### Tini
 [Tini](https://github.com/krallin/tini) is pre-installed in the container.  If the image entrypoint is not overwritten then it will be automatically used.
@@ -36,4 +36,4 @@ The script then reads the database details from a set of environment variables w
 | `SERVICE_`DATABASE_APPNAME  | The application name that PostgreSQL should associate with the connection for logging and monitoring.  |
 | `SERVICE_`DATABASE_NAME     | The name of the PostgreSQL database to be created.                                                     |
 
-**NOTE - this is currently utilising an unstable java-9-openjdk package, therefore this base image is currently only intended to used for testing purposes and is not to be used for production.**
+**NOTE - this is currently utilising an unstable java-11-openjdk package, therefore this base image is currently only intended to used for testing purposes and is not to be used for production.**
