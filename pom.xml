@@ -22,13 +22,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.cafapi</groupId>
-    <artifactId>opensuse-jre11-image</artifactId>
+    <artifactId>opensuse-java11-images</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>openSUSE JRE11 image</name>
+    <name>openSUSE Java11 images</name>
     <description>An openSUSE-based image which includes the OpenJDK 11 Runtime Environment.</description>
-    <url>https://github.com/CAFapi/opensuse-jre11-image</url>
+    <url>https://github.com/CAFapi/opensuse-java11-images</url>
 
     <parent>
         <groupId>com.github.cafapi</groupId>
@@ -97,7 +97,7 @@
                         <image>
                             <name>${dockerCafImagePrefix}opensuse-jre11${dockerProjectVersion}</name>
                             <build>
-                                <dockerFileDir>.</dockerFileDir>
+                                <dockerFileDir>jre</dockerFileDir>
                                 <args>
                                     <!-- Labels used for image tagging -->
                                     <BUILD_NUMBER>${project.version}</BUILD_NUMBER>
@@ -121,9 +121,9 @@
     </build>
 
     <scm>
-        <connection>scm:git:https://github.com/CAFapi/opensuse-jre11-image.git</connection>
-        <developerConnection>scm:git:https://github.com/CAFapi/opensuse-jre11-image.git</developerConnection>
-        <url>https://github.com/CAFapi/opensuse-jre11-image</url>
+        <connection>scm:git:https://github.com/CAFapi/opensuse-java11-images.git</connection>
+        <developerConnection>scm:git:https://github.com/CAFapi/opensuse-java11-images.git</developerConnection>
+        <url>https://github.com/CAFapi/opensuse-java11-images</url>
     </scm>
 
 </project>
