@@ -14,26 +14,19 @@
 # limitations under the License.
 #
 
-FROM cafapi/opensuse-base:1
+FROM cafinternal/prereleases:opensuse-base-2.0.0-SCMOD-4279-SNAPSHOT
 
 # Update the OS packages
 RUN zypper -n refresh && \
-    zypper -n update && \
-    zypper -n install wget fontconfig libX11.so.6 libXext.so.6 libXi.so.6 libXrender.so.1 libXtst.so.6 libasound.so.2 libgif.so.6 \
-        libjpeg.so.8 libjvm.so libpng16.so.16 libpulse.so.0 mozilla-nss jpackage-utils liblcms2.so.2
+    zypper -n update
 
 # Install Java certificate installation script
 ADD https://raw.githubusercontent.com/CAFapi/caf-common/v1.14.0/container-cert-script/install-ca-cert-java.sh \
     /startup/startup.d/
 RUN chmod +x /startup/startup.d/install-ca-cert-java.sh
 
-RUN wget https://download.opensuse.org/repositories/Java:/Factory/openSUSE_Leap_42.3/x86_64/java-11-openjdk-headless-11.0.0.0~10-30.1.x86_64.rpm
-RUN rpm -ivh --nodeps java-11-openjdk-headless-11.0.0.0~10-30.1.x86_64.rpm
-
-RUN wget https://download.opensuse.org/repositories/Java:/Factory/openSUSE_Leap_42.3/x86_64/java-11-openjdk-11.0.0.0~10-30.1.x86_64.rpm
-RUN rpm -ivh --nodeps java-11-openjdk-11.0.0.0~10-30.1.x86_64.rpm
-
-RUN rm java-11-openjdk-headless-11.0.0.0~10-30.1.x86_64.rpm java-11-openjdk-11.0.0.0~10-30.1.x86_64.rpm
+# Install OpenJDK 11 Runtime Environment
+RUN zypper -n install java-11-openjdk
 
 # Tag the image
 ARG BUILD_NUMBER
