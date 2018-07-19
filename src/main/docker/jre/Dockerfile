@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-FROM cafinternal/prereleases:opensuse-base-2.0.0-SCMOD-4279-SNAPSHOT
+FROM cafinternal/prereleases:opensuse-base-1.2.0-SNAPSHOT
 
 # Update the OS packages
 RUN zypper -n refresh && \
