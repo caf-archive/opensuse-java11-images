@@ -25,8 +25,11 @@ ADD https://raw.githubusercontent.com/CAFapi/caf-common/v1.14.0/container-cert-s
     /startup/startup.d/
 RUN chmod +x /startup/startup.d/install-ca-cert-java.sh
 
-# Install OpenJDK 11 Runtime Environment
+# Install OpenJDK 11 Development Kit
 RUN zypper -n install java-11-openjdk-devel
+
+# Set Java Home
+ENV JAVA_HOME=/usr/lib64/jvm/java-11-openjdk-11
 
 # Tag the image
 ARG BUILD_NUMBER
