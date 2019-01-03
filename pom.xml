@@ -27,7 +27,7 @@
     <packaging>pom</packaging>
 
     <name>openSUSE Java11 images</name>
-    <description>An openSUSE-based image which includes the OpenJDK 11 Runtime Environment.</description>
+    <description>Two openSUSE-based images which includes the OpenJDK 11 Runtime Environment or the OpenJDK 11 Development Kit.</description>
     <url>https://github.com/CAFapi/opensuse-java11-images</url>
 
     <inceptionYear>2017</inceptionYear>
@@ -97,6 +97,25 @@
                             <name>${dockerCafImagePrefix}opensuse-jre11${dockerProjectVersion}</name>
                             <build>
                                 <dockerFileDir>jre</dockerFileDir>
+                                <args>
+                                    <!-- Labels used for image tagging -->
+                                    <BUILD_NUMBER>${project.version}</BUILD_NUMBER>
+                                    <BUILD_DATE>${maven.build.timestamp}</BUILD_DATE>
+                                    <GIT_REPO>${project.scm.url}</GIT_REPO>
+                                    <GIT_BRANCH>${git.branch}</GIT_BRANCH>
+                                    <GIT_COMMIT>${git.revision}</GIT_COMMIT>
+
+                                    <!-- Enable internet access -->
+                                    <http_proxy>${env.HTTP_PROXY}</http_proxy>
+                                    <https_proxy>${env.HTTPS_PROXY}</https_proxy>
+                                    <no_proxy>${env.NO_PROXY}</no_proxy>
+                                </args>
+                            </build>
+                        </image>
+                        <image>
+                            <name>${dockerCafImagePrefix}opensuse-jdk11${dockerProjectVersion}</name>
+                            <build>
+                                <dockerFileDir>jdk</dockerFileDir>
                                 <args>
                                     <!-- Labels used for image tagging -->
                                     <BUILD_NUMBER>${project.version}</BUILD_NUMBER>
