@@ -17,8 +17,7 @@
 FROM cafapi/opensuse-base:1
 
 # Update the OS packages
-RUN zypper -n refresh && \
-    zypper -n update
+RUN zypper -n refresh
 
 # Install Java certificate installation script
 ADD https://raw.githubusercontent.com/CAFapi/caf-common/v1.14.0/container-cert-script/install-ca-cert-java.sh \
