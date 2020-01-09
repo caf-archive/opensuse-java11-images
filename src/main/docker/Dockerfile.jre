@@ -15,7 +15,7 @@
 #
 
 #
-# Prelimiary image that updates java.security to disable weaker SSL algorithms
+# Preliminary image that updates java.security to disable weaker SSL algorithms
 #
 FROM cafapi/opensuse-base:1 AS builder
 
