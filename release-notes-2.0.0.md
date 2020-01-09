@@ -8,3 +8,7 @@ This will help to prevent against vulnerabilities, for example [Logjam](https://
 
 #### Known Issues
 - None
+
+#### Breaking Changes
+- **SCMOD-8481** - Disabled weaker SSL algorithms.  
+A number of weaker SSL algorithms have been disabled, you can find the list of disabled algorithms [here](src/main/docker/disableWeakTlsAlgorithms.patch).
