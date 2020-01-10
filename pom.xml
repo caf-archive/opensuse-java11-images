@@ -136,6 +136,17 @@
                     <verbose>true</verbose>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>com.mycila</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <configuration>
+                    <mapping>
+                        <patch>SCRIPT_STYLE</patch>
+                        <jre>SCRIPT_STYLE</jre>
+                        <jdk>SCRIPT_STYLE</jdk>
+                    </mapping>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
