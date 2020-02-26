@@ -21,6 +21,7 @@ FROM cafapi/opensuse-base:1 AS builder
 
 # Refresh the OS repositories and install OpenJDK 11 Development Kit
 RUN zypper -n refresh && \
+    zypper -n update && \
     zypper -n install java-11-openjdk-devel
 
 # Install Patch
@@ -41,6 +42,7 @@ FROM cafapi/opensuse-base:1
 
 # Refresh the OS repositories and install OpenJDK 11 Development Kit
 RUN zypper -n refresh && \
+    zypper -n update && \
     zypper -n install java-11-openjdk-devel
 
 # Install Java certificate installation script
