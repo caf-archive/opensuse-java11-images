@@ -53,6 +53,9 @@ RUN chmod +x /startup/startup.d/install-ca-cert-java.sh
 # Set Java Home
 ENV JAVA_HOME=/usr/lib64/jvm/java-11-openjdk-11
 
+# Set JRE Home
+ENV JRE_HOME=/usr/lib64/jvm/java-11-openjdk-11
+
 # Disable weaker security algorithms
 COPY --from=builder $JAVA_HOME/conf/security/java.security* $JAVA_HOME/conf/security/
 

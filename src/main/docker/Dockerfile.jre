@@ -47,6 +47,9 @@ ADD https://raw.githubusercontent.com/CAFapi/caf-common/v1.14.0/container-cert-s
     /startup/startup.d/
 RUN chmod +x /startup/startup.d/install-ca-cert-java.sh
 
+# Set JRE Home
+ENV JRE_HOME=/usr/lib64/jvm/java-11-openjdk-11
+
 # Disable weaker security algorithms
 COPY --from=builder /usr/lib64/jvm/java-11-openjdk-11/conf/security/java.security* \
                     /usr/lib64/jvm/java-11-openjdk-11/conf/security/
