@@ -38,7 +38,7 @@ RUN cd $JAVA_HOME/conf/security && \
 #
 # The actual image definition
 #
-FROM cafapi/opensuse-base:1
+FROM cafinternal/prereleases:opensuse-base-2.0.0-SNAPSHOT
 
 # Refresh the OS repositories and install OpenJDK 11 Development Kit
 RUN zypper -n refresh && \
