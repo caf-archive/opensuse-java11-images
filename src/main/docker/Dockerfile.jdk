@@ -17,7 +17,7 @@
 #
 # Preliminary image that updates java.security to disable weaker SSL algorithms
 #
-FROM cafapi/opensuse-base:1 AS builder
+FROM cafapi/opensuse-base:2 AS builder
 
 # Refresh the OS repositories and install OpenJDK 11 Development Kit
 RUN zypper -n refresh && \
@@ -38,7 +38,7 @@ RUN cd $JAVA_HOME/conf/security && \
 #
 # The actual image definition
 #
-FROM cafinternal/prereleases:opensuse-base-2.0.0-SNAPSHOT
+FROM cafapi/opensuse-base:2
 
 # Refresh the OS repositories and install OpenJDK 11 Development Kit
 RUN zypper -n refresh && \
