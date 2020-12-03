@@ -20,8 +20,10 @@
  # Example:
  #   jdk.tls.disabledAlgorithms=MD5, SSLv3, DSA, RSA keySize < 2048
  jdk.tls.disabledAlgorithms=SSLv3, RC4, DES, MD5withRSA, DH keySize < 1024, \
--    EC keySize < 224, 3DES_EDE_CBC, anon, NULL
+-    EC keySize < 224, 3DES_EDE_CBC, anon, NULL, \
+-    include jdk.disabled.namedCurves
 +    EC keySize < 224, 3DES_EDE_CBC, anon, NULL, \
++    include jdk.disabled.namedCurves
 +    CAMELLIA_128_CBC, AES_256_CBC, AES_128_CBC, \
 +    DES40_CBC, RC4_40, CAMELLIA_256_CBC, DES_CBC, \
 +    SEED_CBC, RC4_56, RC4_128, IDEA_CBC, RC2_CBC_40, \
