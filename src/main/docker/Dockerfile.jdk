@@ -46,10 +46,10 @@ RUN cd $JAVA_HOME/conf/security && \
 FROM ${DOCKER_HUB_PRIVATE}/cafinternal/prereleases:opensuse-base-2.2.0-SNAPSHOT
 
 # Refresh the OS repositories and install OpenJDK 11 Development Kit
-RUN zypper al curl postgresql dejavu-fonts && \
-    zypper -n refresh && \
+RUN zypper -n refresh && \
     zypper -n update && \
-    zypper -n install java-11-openjdk-devel
+    zypper -n install java-11-openjdk-devel && \
+    zypper al java-11-openjdk
 
 # Install Java certificate installation script
 ADD https://raw.githubusercontent.com/CAFapi/caf-common/v1.19.0/container-cert-script/install-ca-cert-java.sh \
