@@ -24,7 +24,8 @@ ARG DOCKER_HUB_PUBLIC=docker.io
 FROM ${DOCKER_HUB_PRIVATE}/cafinternal/prereleases:opensuse-base-2.2.0-SNAPSHOT AS builder
 
 # Refresh the OS repositories and install OpenJDK 11 Development Kit
-RUN zypper -n refresh && \
+RUN zypper al curl postgresql dejavu-fonts && \
+    zypper -n refresh && \
     zypper -n update && \
     zypper -n install java-11-openjdk-devel
 
@@ -45,7 +46,8 @@ RUN cd $JAVA_HOME/conf/security && \
 FROM ${DOCKER_HUB_PRIVATE}/cafinternal/prereleases:opensuse-base-2.2.0-SNAPSHOT
 
 # Refresh the OS repositories and install OpenJDK 11 Development Kit
-RUN zypper -n refresh && \
+RUN zypper al curl postgresql dejavu-fonts && \
+    zypper -n refresh && \
     zypper -n update && \
     zypper -n install java-11-openjdk-devel
 
