@@ -26,7 +26,8 @@ FROM ${DOCKER_HUB_PRIVATE}/cafapi/opensuse-base:2 AS builder
 # Refresh the OS repositories and install OpenJDK 11 Development Kit
 RUN zypper -n refresh && \
     zypper -n update && \
-    zypper -n install java-11-openjdk-devel
+    zypper -n install java-11-openjdk-devel && \
+    zypper al java-11-openjdk
 
 # Install Patch
 RUN zypper -n install patch
@@ -47,7 +48,8 @@ FROM ${DOCKER_HUB_PRIVATE}/cafapi/opensuse-base:2
 # Refresh the OS repositories and install OpenJDK 11 Development Kit
 RUN zypper -n refresh && \
     zypper -n update && \
-    zypper -n install java-11-openjdk-devel
+    zypper -n install java-11-openjdk-devel && \
+    zypper al java-11-openjdk
 
 # Install Java certificate installation script
 ADD https://raw.githubusercontent.com/CAFapi/caf-common/v1.19.0/container-cert-script/install-ca-cert-java.sh \
