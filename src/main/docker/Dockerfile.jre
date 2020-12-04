@@ -24,10 +24,10 @@ ARG DOCKER_HUB_PUBLIC=docker.io
 FROM ${DOCKER_HUB_PRIVATE}/cafinternal/prereleases:opensuse-base-2.2.0-SNAPSHOT AS builder
 
 # Refresh the OS repositories and install OpenJDK 11 Runtime Environment
-RUN zypper al curl postgresql dejavu-fonts && \
-    zypper -n refresh && \
+RUN zypper -n refresh && \
     zypper -n update && \
-    zypper -n install java-11-openjdk
+    zypper -n install java-11-openjdk && \
+    zypper al java-11-openjdk
 
 # Install Patch
 RUN zypper -n install patch
