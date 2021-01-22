@@ -64,16 +64,3 @@ ENV JRE_HOME=/usr/lib64/jvm/java-11-openjdk-11
 
 # Disable weaker security algorithms
 COPY --from=builder $JAVA_HOME/conf/security/java.security* $JAVA_HOME/conf/security/
-
-# Tag the image
-ARG BUILD_NUMBER
-ARG BUILD_DATE
-ARG GIT_REPO
-ARG GIT_BRANCH
-ARG GIT_COMMIT
-
-LABEL Build.Number="$BUILD_NUMBER" \
-      Build.Date="$BUILD_DATE" \
-      Git.Repo="$GIT_REPO" \
-      Git.Branch="$GIT_BRANCH" \
-      Git.Commit="$GIT_COMMIT"
