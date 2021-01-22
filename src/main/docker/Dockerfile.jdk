@@ -14,14 +14,13 @@
 # limitations under the License.
 #
 
-# Docker registries
-ARG DOCKER_HUB_PRIVATE=docker.io
+# Docker registry
 ARG DOCKER_HUB_PUBLIC=docker.io
 
 #
 # Preliminary image that updates java.security to disable weaker SSL algorithms
 #
-FROM ${DOCKER_HUB_PRIVATE}/cafapi/opensuse-base:2 AS builder
+FROM ${DOCKER_HUB_PUBLIC}/cafapi/opensuse-base:2 AS builder
 
 # Refresh the OS repositories and install OpenJDK 11 Development Kit
 RUN zypper -n refresh && \
@@ -43,7 +42,7 @@ RUN cd $JAVA_HOME/conf/security && \
 #
 # The actual image definition
 #
-FROM ${DOCKER_HUB_PRIVATE}/cafapi/opensuse-base:2
+FROM ${DOCKER_HUB_PUBLIC}/cafapi/opensuse-base:2
 
 # Refresh the OS repositories and install OpenJDK 11 Development Kit
 RUN zypper -n refresh && \
