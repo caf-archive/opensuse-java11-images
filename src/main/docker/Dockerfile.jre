@@ -47,14 +47,13 @@ RUN zypper -n refresh && \
     zypper -n install java-11-openjdk && \
     zypper al java-11-openjdk && \
     zypper -n clean --all
-RUN chmod a+rwx /etc/pki/trust/anchors && \
-    chmod -R a+rwx /var/lib/ca-certificates /usr/lib64/jvm/jre/lib/security/cacerts && \
-    chmod -R a+rw /etc/ssl
+
+COPY caf-java /etc/sudoers.d/caf-java
 
 # Install Java certificate installation script
-ADD https://raw.githubusercontent.com/CAFapi/caf-common/v1.19.0/container-cert-script/install-ca-cert-java.sh \
+ADD https://raw.githubusercontent.com/CAFapi/caf-common/SCMOD-12755/container-cert-script/install-ca-cert-java.sh \
     /startup/startup.d/
-RUN chmod +x /startup/startup.d/install-ca-cert-java.sh
+RUN chmod +rx /startup/startup.d/install-ca-cert-java.sh
 
 # Set JRE Home
 ENV JRE_HOME=/usr/lib64/jvm/java-11-openjdk-11
