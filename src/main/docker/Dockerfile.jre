@@ -39,7 +39,7 @@ RUN cd /usr/lib64/jvm/java-11-openjdk-11/conf/security && \
 #
 # The actual image definition
 #
-FROM ${DOCKER_HUB_PUBLIC}/cafapi/prereleases:opensuse-base-2.3.0-SNAPSHOT
+FROM ${DOCKER_HUB_PUBLIC}/cafapi/prereleases:opensuse-base-2.3.0-SCMOD-12755-SNAPSHOT
 
 # Refresh the OS repositories and install OpenJDK 11 Runtime Environment
 RUN zypper -n refresh && \
@@ -48,10 +48,11 @@ RUN zypper -n refresh && \
     zypper al java-11-openjdk && \
     zypper -n clean --all
 
+COPY sudoers.d/install-ca-cert-java /etc/sudoers.d/install-ca-cert-java
+
 # Install Java certificate installation script
-ADD https://raw.githubusercontent.com/CAFapi/caf-common/v1.19.0/container-cert-script/install-ca-cert-java.sh \
-    /startup/startup.d/
-RUN chmod +x /startup/startup.d/install-ca-cert-java.sh
+COPY startup.d/install-ca-cert-java.sh /startup/startup.d/install-ca-cert-java.sh
+RUN chmod +rx /startup/startup.d/install-ca-cert-java.sh
 
 # Set JRE Home
 ENV JRE_HOME=/usr/lib64/jvm/java-11-openjdk-11
