@@ -51,10 +51,10 @@ RUN zypper -n refresh && \
     zypper al java-11-openjdk && \
     zypper -n clean --all
 
-COPY permissions/caf-java /etc/sudoers.d/caf-java
+COPY sudoers.d/install-ca-cert-java /etc/sudoers.d/install-ca-cert-java
 
 # Install Java certificate installation script
-COPY install-ca-cert-java.sh /startup/startup.d/install-ca-cert-java.sh
+COPY startup.d/install-ca-cert-java.sh /startup/startup.d/install-ca-cert-java.sh
 RUN chmod +rx /startup/startup.d/install-ca-cert-java.sh
 
 # Set Java Home
