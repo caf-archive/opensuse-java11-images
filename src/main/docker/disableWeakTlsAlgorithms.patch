@@ -14,8 +14,8 @@
 # limitations under the License.
 #
 
---- java.security-2.12	2021-05-11 14:42:38.000000000 +0530
-+++ java.security	2021-05-24 13:05:41.868287681 +0530
+--- java.security
++++ java.security
 @@ -739,6 +739,26 @@
  #   jdk.tls.disabledAlgorithms=MD5, SSLv3, DSA, RSA keySize < 2048
  jdk.tls.disabledAlgorithms=SSLv3, TLSv1, TLSv1.1, RC4, DES, MD5withRSA, \
