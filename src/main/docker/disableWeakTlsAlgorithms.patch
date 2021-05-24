@@ -16,18 +16,13 @@
 
 --- java.security
 +++ java.security
-@@ -624,7 +624,29 @@
- # Example:
+@@ -739,6 +739,26 @@
  #   jdk.tls.disabledAlgorithms=MD5, SSLv3, DSA, RSA keySize < 2048
- jdk.tls.disabledAlgorithms=SSLv3, RC4, DES, MD5withRSA, DH keySize < 1024, \
--    EC keySize < 224, 3DES_EDE_CBC, anon, NULL, \
--    include jdk.disabled.namedCurves
-+    EC keySize < 224, 3DES_EDE_CBC, anon, NULL, \
+ jdk.tls.disabledAlgorithms=SSLv3, TLSv1, TLSv1.1, RC4, DES, MD5withRSA, \
+     DH keySize < 1024, EC keySize < 224, 3DES_EDE_CBC, anon, NULL, \
 +    CAMELLIA_128_CBC, AES_256_CBC, AES_128_CBC, \
 +    DES40_CBC, RC4_40, CAMELLIA_256_CBC, DES_CBC, \
 +    SEED_CBC, RC4_56, RC4_128, IDEA_CBC, RC2_CBC_40, \
-+    TLSv1, \
-+    TLSv1.1, \
 +    TLS_DH_DSS_WITH_AES_128_GCM_SHA256, \
 +    TLS_DH_DSS_WITH_AES_256_GCM_SHA384, \
 +    TLS_DH_RSA_WITH_AES_128_GCM_SHA256, \
@@ -45,7 +40,6 @@
 +    TLS_ECDH_RSA_WITH_AES_128_GCM_SHA256, \
 +    TLS_DHE_DSS_WITH_AES_128_GCM_SHA256, \
 +    TLS_EMPTY_RENEGOTIATION_INFO_SCSV, \
-+    include jdk.disabled.namedCurves
-
- # Legacy algorithms for Secure Socket Layer/Transport Layer Security (SSL/TLS)
- # processing in JSSE implementation.
+     include jdk.disabled.namedCurves
+ 
+ #
