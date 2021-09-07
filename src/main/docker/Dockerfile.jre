@@ -20,7 +20,7 @@ ARG DOCKER_HUB_PUBLIC=docker.io
 #
 # Preliminary image that updates java.security to disable weaker SSL algorithms
 #
-FROM ${DOCKER_HUB_PUBLIC}/cafapi/prereleases:opensuse-base-2.5.0-SNAPSHOT AS builder
+FROM ${DOCKER_HUB_PUBLIC}/cafapi/prereleases:opensuse-base-2.4.1-SNAPSHOT AS builder
 
 # Refresh the OS repositories and install OpenJDK 11 Runtime Environment
 RUN zypper -n refresh && \
