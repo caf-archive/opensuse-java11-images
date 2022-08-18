@@ -16,33 +16,7 @@
 
 # Docker registry
 ARG DOCKER_HUB_PUBLIC=docker.io
-
-#
-# Preliminary image that updates java.security to disable weaker SSL algorithms
-#
-FROM ${DOCKER_HUB_PUBLIC}/cafapi/opensuse-base:2 AS builder
-
-# Refresh the OS repositories and install OpenJDK 11 Development Kit
-RUN zypper -n refresh && \
-    zypper -n update && \
-    zypper -n install java-11-openjdk-devel && \
-    zypper al java-11-openjdk
-
-# Install Patch
-RUN zypper -n install patch
-
-# Set Java Home
-ENV JAVA_HOME=/usr/lib64/jvm/java-11-openjdk-11
-
-# Disable weaker security algorithms
-COPY disableWeakTlsAlgorithms.patch $JAVA_HOME/conf/security/
-RUN cd $JAVA_HOME/conf/security && \
-    patch -i disableWeakTlsAlgorithms.patch java.security
-
-#
-# The actual image definition
-#
-FROM ${DOCKER_HUB_PUBLIC}/cafapi/opensuse-base:2
+FROM ${DOCKER_HUB_PUBLIC}/cafapi/prereleases:opensuse-base-2.6.0-SNAPSHOT
 
 # Refresh the OS repositories and install OpenJDK 11 Development Kit
 RUN zypper -n refresh && \
@@ -61,6 +35,3 @@ ENV JAVA_HOME=/usr/lib64/jvm/java-11-openjdk-11
 
 # Set JRE Home
 ENV JRE_HOME=/usr/lib64/jvm/java-11-openjdk-11
-
-# Disable weaker security algorithms
-COPY --from=builder $JAVA_HOME/conf/security/java.security* $JAVA_HOME/conf/security/
