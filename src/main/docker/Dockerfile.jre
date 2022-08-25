@@ -22,7 +22,6 @@ FROM ${DOCKER_HUB_PUBLIC}/cafapi/prereleases:opensuse-base-2.6.0-SNAPSHOT
 RUN zypper -n refresh && \
     zypper -n update && \
     zypper -n install java-11-openjdk && \
-    zypper al java-11-openjdk && \
     zypper -n clean --all
 
 # Install Java certificate installation script
