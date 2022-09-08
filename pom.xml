@@ -73,7 +73,7 @@
             <plugin>
                 <groupId>io.fabric8</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
-                <version>0.34.0</version>
+                <version>0.40.2</version>
                 <executions>
                     <execution>
                         <id>docker-build</id>
@@ -94,8 +94,16 @@
                     <autoPull>always</autoPull>
                     <images>
                         <image>
-                            <name>${dockerCafImagePrefix}opensuse-jre11${dockerProjectVersion}</name>
+                            <name>armie.local/opensuse-jre11</name>
                             <build>
+                                <buildx>
+                                    <platforms>
+                                        <platform>linux/amd64</platform>
+                                        <platform>linux/arm64</platform>
+                                    </platforms>
+<!--                                    <dockerStateDir>~/BuildXState</dockerStateDir>-->
+                                    <configFile>~/buildx.cfg</configFile>
+                                </buildx>
                                 <dockerFileDir>.</dockerFileDir>
                                 <dockerFile>Dockerfile.jre</dockerFile>
                                 <args>
@@ -107,8 +115,16 @@
                             </build>
                         </image>
                         <image>
-                            <name>${dockerCafImagePrefix}opensuse-jdk11${dockerProjectVersion}</name>
+                            <name>armie.local/opensuse-jdk11</name>
                             <build>
+                                <buildx>
+                                    <platforms>
+                                        <platform>linux/amd64</platform>
+                                        <platform>linux/arm64</platform>
+                                    </platforms>
+<!--                                    <dockerStateDir>~/BuildXState</dockerStateDir>-->
+                                    <configFile>~/buildx.cfg</configFile>
+                                </buildx>
                                 <dockerFileDir>.</dockerFileDir>
                                 <dockerFile>Dockerfile.jdk</dockerFile>
                                 <args>
