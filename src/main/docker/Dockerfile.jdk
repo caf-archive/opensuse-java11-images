@@ -16,7 +16,7 @@
 
 # Docker registry
 ARG DOCKER_HUB_PUBLIC=docker.io
-FROM armie.local/opensuse-base
+FROM armie.lan/opensuse-base
 
 # Refresh the OS repositories and install OpenJDK 11 Development Kit
 RUN zypper -n refresh && \
