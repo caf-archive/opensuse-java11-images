@@ -16,7 +16,7 @@
 
 # Docker registry
 ARG DOCKER_HUB_PUBLIC=docker.io
-FROM ${DOCKER_HUB_PUBLIC}/cafapi/opensuse-base:2.7.0-rory-tumbleweed-SNAPSHOT
+FROM ${DOCKER_HUB_PUBLIC}/cafapi/prereleases:opensuse-base-2.7.0-rory-tumbleweed-SNAPSHOT
 
 # Refresh the OS repositories and install OpenJDK 11 Development Kit
 RUN zypper -n refresh && \
