@@ -16,7 +16,48 @@
 
 # Docker registry
 ARG DOCKER_HUB_PUBLIC=docker.io
-FROM ${DOCKER_HUB_PUBLIC}/cafapi/opensuse-base:2
+
+# Reference the base image we normally use
+FROM ${DOCKER_HUB_PUBLIC}/cafapi/opensuse-base:2 as usual-base
+
+#
+# Stage 1: The start of the actual image definition
+# - Install desired packages
+# - Specify policy for cryptographic back-ends
+#
+FROM ${DOCKER_HUB_PUBLIC}/opensuse/tumbleweed:latest
+
+# Set the locale manually to a set inherited from the base image (defaults to POSIX)
+ENV LANG=en_US.utf8
+
+# Copy custom crypto-policy file
+COPY --from=usual-base /etc/crypto-policies/policies/modules/DISABLE-CBC.pmod /etc/crypto-policies/policies/modules
+
+# Update the OS packages, install cURL, postgreSQL client and dejavu-fonts
+# Install crypto-policies-scripts and disable weaker security algorithms
+RUN zypper -n refresh && \
+    zypper -n update && \
+    zypper -n install curl postgresql dejavu-fonts crypto-policies-scripts && \
+    update-crypto-policies --set DEFAULT:DISABLE-CBC && \
+    sed -rie '/^jdk.tls.disabledAlgorithms=/s/$/, TLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256/' \
+        /etc/crypto-policies/back-ends/java.config && \
+    zypper -n remove -u crypto-policies-scripts && \
+    zypper -n clean --all
+
+# Copy gosu
+COPY --from=usual-base /usr/local/bin/gosu /usr/local/bin/gosu
+
+# Add scripts to be executed during startup
+COPY --from=usual-base /startup /startup
+
+# Add Tini
+ENV TINI_VERSION v0.19.0
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
+RUN chmod +x /tini
+ENTRYPOINT ["/tini", "--", "/startup/startup.sh"]
+
+# Add other useful scripts
+COPY --from=usual-base /scripts /scripts
 
 # Refresh the OS repositories and install OpenJDK 11 Runtime Environment
 RUN zypper -n refresh && \
