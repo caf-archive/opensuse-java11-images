@@ -21,7 +21,7 @@ ARG DOCKER_HUB_PUBLIC=docker.io
 FROM ${DOCKER_HUB_PUBLIC}/cafapi/opensuse-base:2 as usual-base
 
 #
-# Stage 1: The start of the actual image definition
+# The start of the actual image definition
 # - Install desired packages
 # - Specify policy for cryptographic back-ends
 #
