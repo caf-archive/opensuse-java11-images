@@ -1,3 +1,6 @@
+#### Version Number
+${version-number}
+
 #### New Features
 - None
 
