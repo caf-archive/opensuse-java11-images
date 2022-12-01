@@ -1,8 +1,8 @@
-!not-ready-for-release!
+### New Features
+- None
 
-#### Version Number
-${version-number}
-
-#### New Features
+#### Patch Fixes Included
+- This release includes OS package updates only.
 
 #### Known Issues
+- None
