@@ -22,9 +22,7 @@ FROM ${DOCKER_HUB_PUBLIC}/cafapi/opensuse-base:2
 RUN zypper -n refresh && \
     zypper -n update && \
     zypper -n install java-11-openjdk mozilla-nss-tools && \
-    zypper -n clean --all \
-    mkdir /etc/pki/nssdb \
-    certutil -N -d /etc/pki/nssdb/ \
+    zypper -n clean --all
 
 # Install Java certificate installation script
 ADD https://raw.githubusercontent.com/CAFapi/caf-common/v1.19.0/container-cert-script/install-ca-cert-java.sh \
