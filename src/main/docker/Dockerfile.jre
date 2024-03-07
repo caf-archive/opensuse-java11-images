@@ -16,7 +16,7 @@
 
 # Docker registry
 ARG DOCKER_HUB_PUBLIC=docker.io
-FROM ${DOCKER_HUB_PUBLIC}/cafapi/prereleases:opensuse-base-2.10.0-SNAPSHOT
+FROM ${DOCKER_HUB_PUBLIC}/cafapi/opensuse-base:2
 
 # Refresh the OS repositories and install OpenJDK 11 Runtime Environment
 RUN zypper -n refresh && \
